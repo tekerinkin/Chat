@@ -1,0 +1,19 @@
+# ninja log v5
+760	794	1657815652636623000	ChatNetworking/libChatNetworking.a	12c484a7970be61d
+2	759	1657815652596051204	ChatNetworking/CMakeFiles/ChatNetworking.dir/src/Base.cpp.o	f1cfe43defbca6ae
+0	98	1657832967982708174	build.ninja	7e4ecb87e184e16c
+2078	2146	1657828219239705058	ChatServer/ChatServer	f208d17e16a0a2b7
+2	2075	1657828219157094111	ChatServer/CMakeFiles/ChatServer.dir/main.cpp.o	b59257323fc37650
+2095	2164	1657829233864095367	ChatClient/ChatClient	8b43eeca891e7b0d
+5	2094	1657829233784748091	ChatClient/CMakeFiles/ChatClient.dir/main.cpp.o	1d040c6eda08aaf1
+5	1730	1657832974710294141	ChatServer/CMakeFiles/ChatServer.dir/main.cpp.o	b59257323fc37650
+6	2161	1657832975141241378	ChatNetworking/CMakeFiles/ChatNetworking.dir/src/tcp_conection.cpp.o	3ae01990793d7d8f
+4	1904	1657833134681867026	ChatNetworking/CMakeFiles/ChatNetworking.dir/src/tcp_server.cpp.o	e62aec9f712b28d3
+1904	1961	1657833134751424000	ChatNetworking/libChatNetworking.a	1089cb9039b6bfe7
+1961	2037	1657833134824583848	ChatServer/ChatServer	f208d17e16a0a2b7
+4	1544	1657833897060641657	ChatServer/CMakeFiles/ChatServer.dir/main.cpp.o	b59257323fc37650
+5	2072	1657833897583950406	ChatNetworking/CMakeFiles/ChatNetworking.dir/src/tcp_server.cpp.o	e62aec9f712b28d3
+5	2074	1657833897585496696	ChatNetworking/CMakeFiles/ChatNetworking.dir/src/tcp_conection.cpp.o	3ae01990793d7d8f
+2074	2139	1657833897668417000	ChatNetworking/libChatNetworking.a	1089cb9039b6bfe7
+2139	2212	1657833897739171652	ChatServer/ChatServer	f208d17e16a0a2b7
+5	67	1657833901990707686	ChatClient/ChatClient	8b43eeca891e7b0d
