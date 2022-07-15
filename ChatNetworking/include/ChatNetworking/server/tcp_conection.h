@@ -4,13 +4,14 @@
 
 namespace Chat {
     using boost::asio::ip::tcp;
+    namespace io = boost::asio;
 
 class TCPConnection : public std::enable_shared_from_this<TCPConnection>{
     public:
         using pointer = std::shared_ptr<TCPConnection>;
 
-        static pointer Create(boost::asio::io_context& io_context) {
-            return pointer(new TCPConnection(io_context));
+        static pointer Create(tcp::socket&& socket) {
+            return pointer(new TCPConnection(std::move(socket)));
         }
         tcp::socket& get_socket() {
             return socket_;
@@ -18,9 +19,9 @@ class TCPConnection : public std::enable_shared_from_this<TCPConnection>{
 
         void Start();
     private:
-        explicit TCPConnection(boost::asio::io_context& io_context);
+        explicit TCPConnection(tcp::socket&& socket);
     private:
         tcp::socket socket_;
-        std::string message_ {"Hello beautiful client!\n"};
+        std::string username_;
     };
 }

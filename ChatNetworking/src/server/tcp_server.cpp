@@ -1,4 +1,4 @@
-#include "ChatNetworking/tcp_server.h"
+#include "ChatNetworking/server/tcp_server.h"
 
 #include <iostream>
 
@@ -22,14 +22,18 @@ namespace Chat {
         return 0;
     }
 
+    void TCPServer::Broadcast(const std::string &message) {
+
+    }
+
     void TCPServer::StartAccept() {
-        auto connection = TCPConnection::Create(io_context_);
+        socket_.emplace(io_context_);
 
-        connections_.push_back(connection);
+        acceptor_.async_accept(*socket_,[this](const boost::system::error_code& error){
+            auto connection = TCPConnection::Create(std::move(*socket_));
 
-        acceptor_.async_accept(connection->get_socket(),
-                               [connection, this]
-                               (const boost::system::error_code& error){
+            connections_.insert(connection);
+
             if(!error) {
                 connection->Start();
             }
