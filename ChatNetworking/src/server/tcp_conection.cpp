@@ -11,6 +11,23 @@ namespace Chat {
     }
 
     void TCPConnection::Start() {
+        AsyncRead();
+    }
 
+    void TCPConnection::SendMessage(const std::string &message) {
+
+    }
+
+    void TCPConnection::AsyncRead() {
+        io::async_read_until(socket_, stream_buf_, "\n",
+                             [self = shared_from_this()](boost::system::error_code error, size_t bytes_transferred) {
+            self->OnRead(error, bytes_transferred);
+        });
+    }
+
+    void TCPConnection::OnRead(boost::system::error_code error, size_t bytes_transferred) {
+        if(error) {
+            socket_.close()
+        }
     }
 }
