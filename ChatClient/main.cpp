@@ -1,37 +1,29 @@
+#include <ChatNetworking/client/tcp_client.h>
 #include <iostream>
-#include <array>
-#include <boost/asio.hpp>
+#include <thread>
 
-using boost::asio::ip::tcp;
 
 int main(int argc, char* argv[]) {
-  try {
-    boost::asio::io_context io_context;
+	chat::TCPClient client {"localhost", 1337};
 
-    tcp::resolver resolver{io_context};
+	client.on_message_ = [](const std::string& message) {
+		std::cout << message << std::endl;
+	};
 
-    auto endpoints = resolver.resolve("127.0.0.1", "1337");
+	std::thread t([&client](){ client.Run(); });
 
-    tcp::socket socket(io_context);
-    boost::asio::connect(socket, endpoints);
+	while(true) {
+		std::string message;
+		getline(std::cin, message);
 
-    for (;;) {
-      std::array<char, 128> buf{};
-      boost::system::error_code error;
+		if(message == "\\q") break;
+		message += "\n";
 
-      size_t len = socket.read_some(boost::asio::buffer(buf), error);
+		client.SendMessage(message);
+	}
 
-      if (error == boost::asio::error::eof) {
-        break;
-      } else if (error) {
-        throw boost::system::system_error(error);
-      }
+	client.Stop();
+	t.join();
 
-      std::cout.write(buf.data(), len);
-    }
-  } catch (std::exception& e) {
-    std::cerr << e.what() << std::endl;
-  }
-
-  return 0;
+  	return 0;
 }

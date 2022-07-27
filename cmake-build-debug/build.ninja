@@ -222,6 +222,13 @@ build ChatNetworking/edit_cache: phony ChatNetworking/CMakeFiles/edit_cache.util
 
 build cmake_object_order_depends_target_ChatNetworking: phony || ChatNetworking/CMakeFiles/ChatNetworking.dir
 
+build ChatNetworking/CMakeFiles/ChatNetworking.dir/src/client/tcp_client.cpp.o: CXX_COMPILER__ChatNetworking_Debug /Users/dimashestakov/Source/CXX/Chat/ChatNetworking/src/client/tcp_client.cpp || cmake_object_order_depends_target_ChatNetworking
+  DEP_FILE = ChatNetworking/CMakeFiles/ChatNetworking.dir/src/client/tcp_client.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -std=gnu++2a
+  INCLUDES = -I/Users/dimashestakov/Source/CXX/Chat/ChatNetworking/include -I/Users/dimashestakov/Source/CXX/libraries/boost_1_79_0
+  OBJECT_DIR = ChatNetworking/CMakeFiles/ChatNetworking.dir
+  OBJECT_FILE_DIR = ChatNetworking/CMakeFiles/ChatNetworking.dir/src/client
+
 build ChatNetworking/CMakeFiles/ChatNetworking.dir/src/server/tcp_conection.cpp.o: CXX_COMPILER__ChatNetworking_Debug /Users/dimashestakov/Source/CXX/Chat/ChatNetworking/src/server/tcp_conection.cpp || cmake_object_order_depends_target_ChatNetworking
   DEP_FILE = ChatNetworking/CMakeFiles/ChatNetworking.dir/src/server/tcp_conection.cpp.o.d
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -std=gnu++2a
@@ -244,7 +251,7 @@ build ChatNetworking/CMakeFiles/ChatNetworking.dir/src/server/tcp_server.cpp.o: 
 #############################################
 # Link the static library ChatNetworking/libChatNetworking.a
 
-build ChatNetworking/libChatNetworking.a: CXX_STATIC_LIBRARY_LINKER__ChatNetworking_Debug ChatNetworking/CMakeFiles/ChatNetworking.dir/src/server/tcp_conection.cpp.o ChatNetworking/CMakeFiles/ChatNetworking.dir/src/server/tcp_server.cpp.o
+build ChatNetworking/libChatNetworking.a: CXX_STATIC_LIBRARY_LINKER__ChatNetworking_Debug ChatNetworking/CMakeFiles/ChatNetworking.dir/src/client/tcp_client.cpp.o ChatNetworking/CMakeFiles/ChatNetworking.dir/src/server/tcp_conection.cpp.o ChatNetworking/CMakeFiles/ChatNetworking.dir/src/server/tcp_server.cpp.o
   ARCH_FLAGS = -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = ChatNetworking/CMakeFiles/ChatNetworking.dir

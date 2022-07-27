@@ -7,32 +7,49 @@
 #include <string>
 #include <unordered_set>
 #include <optional>
+#include <functional>
+#include <memory>
 
-namespace Chat {
-using boost::asio::ip::tcp;
+namespace chat
+{
+	using boost::asio::ip::tcp;
 
-namespace io = boost::asio;
+	namespace io = boost::asio;
 
-enum class IPV { V4, V6 };
+	enum class IPV
+	{
+		V4,
+		V6
+	};
 
-class TCPServer {
- public:
-  TCPServer(int port, IPV version);
+	class TCPServer
+	{
+		using OnJoinHandler			 = std::function<void(TCPConnection::Pointer)>;
+		using OnLeaveHandler		 = std::function<void(TCPConnection::Pointer)>;
+		using OnClientMessageHandler = std::function<void(std::string)>;
 
-  int Run();
+	public:
+		TCPServer(int port, IPV version);
 
-  void Broadcast(const std::string& message);
+		int Run();
 
- private:
-  void StartAccept();
+		void Broadcast(const std::string& message);
 
- private:
-  int port_;
-  IPV ip_version_;
+	private:
+		void StartAccept();
 
-  io::io_context io_context_;
-  tcp::acceptor acceptor_;
-  std::optional<tcp::socket> socket_;
-  std::unordered_set<TCPConnection::pointer> connections_{};
-};
+	public:
+		OnJoinHandler on_join_;
+		OnLeaveHandler on_leave_;
+		OnClientMessageHandler on_client_message;
+
+	private:
+		int port_;
+		IPV ip_version_;
+
+		io::io_context io_context_;
+		tcp::acceptor acceptor_;
+		std::optional<tcp::socket> socket_;
+		std::unordered_set<TCPConnection::Pointer> connections_{};
+	};
 }  // namespace Chat
